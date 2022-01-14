@@ -1,0 +1,98 @@
+/*	
+	This rule scans for common top-level URLs and IP addresses used in SolarMarker.
+
+	Common Top-level Domains found: 
+	.tk, .ga, .ml (.ML), .site, .cf
+	
+	Note: There are .com domains also in use.
+---------------------------------------------------------------------------------------------------------------------------------------
+	INSTRUCTIONS
+	To scan image or files:
+		
+		Use the -sgr flags with the rule to scan all folder and subfolders.
+						
+		Usage on a mounted image (best results)
+			yara64.exe -sgr solarmarker_urls_ips_commons.yar ?:\ > <exported_text_file>.txt
+			(Replace ?:\ with the actual mounted drive with the OS tree)
+				
+		Note: Disregard unable to open errors during scan!
+		
+	Usage from  your D:\Export folder
+			yara64.exe -sgr solarmarker_urls_ips_commons.yar d:\cases\<case_number>\evidence\<case_number_DECRYPTED.E01> > <export_text_file>.txt				
+---------------------------------------------------------------------------------------------------------------------------------------
+	
+	OTHER
+		1. 	If you don't need a string, just comment it out using // at the begginning of the line. Look around for examples.
+		2. 	If the URL or IP you expect to see in the scan is not found in the text file, it means that it was not found in the image files.
+		
+		Note: If using in nano (Linux) use ALT+Shift+3 to view line numbers.
+		Note: WHEN EDITING, WATCH OUT FOR DELETED (=) OR (").
+	
+---------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+rule urls_ips_commons
+{
+	meta:
+		author = "Saulo 'Sal' Ortiz, Sr. Cyber Forensics Analyst"
+		description = "Pulls all HTTP/HTTPS sites, IP addresses and also scan for common URLs used in SolarMarker"
+		date = "2021-10-22"
+		updated = "2021-12-27"
+		in_the_wild = "True"
+		threat_level = 3
+		weight = 100
+				
+	strings:
+		//$a1 = /http:\/\/[a-z0-9\.\/]{3,90}./				// Uncomment to pull all HTTP URLs
+		//$a2 = /https:\/\/[a-z0-9\.\/]{3,90}./				// Uncomment to pull all HTTPS URLs
+
+		//$ipv4 = /([0-9]{1,3}\.){3}[0-9]{1,3}/ ascii		// Uncomment to pull all IPs
+
+//Commons (Latest addition at the bottom)
+		
+		$site1 = "downsuhen.tk" fullword
+		$site2 = "gesitabnotu.tk" fullword
+		$site3 = "imposipalacal.tk" fullword
+		$site4 = "probetrotoomensro.tk" fullword
+		$site5 = "phazeddlport.site" fullword
+		$site6 = "biyrebattlearn.ga" fullword
+		$site7 = "parkseacondiosquawat.ga" fullword
+		$site8 = "microledshow.com" fullword
+		$site9 = "alanheary.com" fullword
+		$site10 = "ablefireprevention.com" fullword
+		$site11 = "wesbedemar.tk" fullword				
+		$site12 = "ittefan.cf" fullword
+		$site13 = "diagramshmmwv.site" fullword
+		$site14 = "gelirovaca.ga" fullword
+		$site15 = "clairopener.site" fullword
+		$site16 = "wibusmeatfwam.tk" fullword
+		$site17 = "nirvanaragan.site" fullword
+		$site18 = "awezphykinodis.tk" fullword
+		$site19 = "complexbytes.com" fullword
+		$site20 = "kingpithefighcornsa.tk" fullword
+		$site22 = "thiogarkindvorpims.tk" fullword
+		$site23 = "feigangsecarroy.tk" fullword
+		$site24 = "magicrlink.site" fullword
+		$site25 = "brocolpalageze.tk" fullword
+		$site26 = "theowinkaaquakissbobc.tk" fullword
+							
+		$b1 = "45.42.201.248"
+		$b2 = "91.241.19.36"
+		$b3 = "172.67.163.216"
+		$b4 = "172.67.149.7"
+		$b5 = "3.238.19.246"
+		$b6 = "3.227.250.63"
+		$b7 = "13.52.200.158"
+		$b8 = "104.21.62.244"
+		$b9 = "172.67.212.229"
+		$b10 = "104.21.72.205"
+
+		//$file1 = "checklist.msi" wide ascii
+		//$file2 = /\checklist/  wide ascii
+				
+//		$msi = { d0 cf 11 e0 a1 b1 1a e1 }	 
+//		$pdf = { 25 50 44 46 }  
+				
+	condition:
+		any of them
+}
