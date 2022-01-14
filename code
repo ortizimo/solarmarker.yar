@@ -36,11 +36,10 @@ rule urls_ips_commons
 	meta:
 		author = "Saulo 'Sal' Ortiz, Sr. Cyber Forensics Analyst"
 		description = "Pulls all HTTP/HTTPS sites, IP addresses and also scan for common URLs used in SolarMarker"
+		reference = "https://github.com/ortizimo/solarmarker.yar/blob/main/code"
 		date = "2021-10-22"
 		updated = "2021-12-27"
 		in_the_wild = "True"
-		threat_level = 3
-		weight = 100
 				
 	strings:
 		//$a1 = /http:\/\/[a-z0-9\.\/]{3,90}./				// Uncomment to pull all HTTP URLs
