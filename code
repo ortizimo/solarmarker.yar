@@ -34,7 +34,7 @@
 rule urls_ips_commons
 {
 	meta:
-		author = "Saulo 'Sal' Ortiz, Sr. Cyber Forensics Analyst"
+		author = "Saulo 'Sal' Ortiz, Sr. Cyber Forensics Analyst, ATG"
 		description = "Pulls all HTTP/HTTPS sites, IP addresses and also scan for common URLs used in SolarMarker"
 		reference = "https://github.com/ortizimo/solarmarker.yar/blob/main/code"
 		date = "2021-10-22"
