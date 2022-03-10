@@ -8,9 +8,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------------
 	INSTRUCTIONS
 	To scan image or files:
-		
-		Use the -sgr flags with the rule to scan all folder and subfolders.
-						
+								
 		Usage on a mounted image (best results)
 			yara64.exe -sgr solarmarker_urls_ips_commons.yar ?:\ > <exported_text_file>.txt
 			(Replace ?:\ with the actual mounted drive with the OS tree)
